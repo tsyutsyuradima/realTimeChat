@@ -16,7 +16,7 @@ $(function(){
 
 	// cache some jQuery objects
 	var section = $(".section");
-    var	footer = $("footer");
+    var	footer = $("#chatform");
     var	onConnect = $(".connected");
     var	inviteSomebody = $(".invite-textfield");
     var	personInside = $(".personinside");
@@ -33,7 +33,7 @@ $(function(){
 //	var	yourEmail = $("#yourEmail");
 	var	hisName = $("#hisName");
 //	var	hisEmail = $("#hisEmail");
-	var	chatForm = $("#chatform");
+	var	chatForm = footer;
 	var	textarea = $("#message");
 	var	messageTimeSent = $(".timesent");
 	var	chats = $(".chats");
