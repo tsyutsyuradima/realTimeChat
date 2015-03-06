@@ -19,6 +19,11 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script src="/vendor/yii-node-socket/lib/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script src="/vendor/yii-node-socket/lib/js/client/client.js"></script>
+    <script>
+        var socket = new YiiNodeSocket();
+    </script>
 </head>
 <body>
 
