@@ -3,107 +3,41 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 $this->title = 'Chat';
-$this->registerCssFile('/web/css/stylesheet.css');
 ?>
 
-<section class="section">
+<script src="/js/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="/js/js/client/client.js"></script>
+<script>
+    var socket = new YiiNodeSocket();
+    socket.debug(true);
 
-    <!-- These elements are displayed as white info cards in the middle of the screen -->
+    socket.onConnect(function () {
+        alert('onConnect');
+    });
 
-    <div class="connected">
+    socket.onDisconnect(function () {
+        alert('onDisconnect');
+    });
 
-        <img src="../img/unnamed.jpg" id="creatorImage" />
+    socket.onConnecting(function () {
+        console.log('onConnecting');
 
-        <div class="infoConnected">
-            <h2>Who are you?</h2>
-            <br/>
+    });
 
-            <form class="loginForm">
-                <input type="text" id="yourName" placeholder="Your nick name" /><br/>
-                <input type="text" id="yourEmail" placeholder="Your email address" /><br/>
-                <input type="submit" id="yourEnter" value="ENTER" />
-            </form>
+    socket.onReconnect(function () {
+        alert('onReconnect');
+    });
 
-        </div>
 
-    </div>
+    socket.emit('global.event', {
+        message : {
+            id : 12,
+            title : 'This is a test message'
+        }
+    });
 
-    <div class="personinside">
+    socket.on('global.event', function (data) {
+       alert(data.message.title); // you will see in console `This is a test message`
+    });
+</script>
 
-        <img src="../img/unnamed.jpg" id="ownerImage" />
-
-        <div class="infoInside">
-            <h2>Chat with <span class="nickname-chat"></span></h2>
-            <br/>
-
-            <form class="loginForm">
-                <input type="text" id="hisName" placeholder="Your nick name" /><br/>
-                <input type="text" id="hisEmail" placeholder="Your email address" /><br/>
-                <input type="submit" id="hisEnter" value="CHAT" />
-            </form>
-
-        </div>
-
-    </div>
-
-    <div class="invite-textfield">
-
-        <h2>Oops, there are no other people in this chat!</h2>
-        <h5>Invite a friend by sending them this URL</h5>
-
-        <div class="link">
-            <a title="Invite a friend" href="" id="link"></a>
-        </div>
-
-    </div>
-
-    <div class="left">
-
-        <img src="../img/unnamed.jpg" id="leftImage" />
-
-        <div class="info">
-            <h2><span class="nickname-left"></span> has left this chat.</h2>
-            <h5>Invite somebody else by sending them this page.</h5>
-        </div>
-
-    </div>
-
-    <div class="toomanypeople">
-
-        <h2>Oops, you can not join this chat!</h2>
-        <h5>There are already two people in it. Would you like to create a <a title="New Room" href="/create" id="room">new room</a>?</h5>
-
-    </div>
-
-    <div class="nomessages">
-
-        <img src="../img/unnamed.jpg" id="noMessagesImage" />
-
-        <div class="info">
-            <h2>You are chatting with <span class="nickname-chat"></span>.</h2>
-            <h5>Send them a message from the form below!</h5>
-        </div>
-
-    </div>
-
-    <div class="chatscreen">
-
-        <ul class="chats">
-            <!-- The chat messages will go here -->
-        </ul>
-
-    </div>
-
-</section>
-
-<form id="chatform">
-
-    <textarea id="message" placeholder="Write something.."></textarea>
-    <input type="submit" id="submit" value="SEND"/>
-
-</form>
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/web/js/moment.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/web/js/chat.js"></script>

@@ -26,9 +26,9 @@ return [
         ],
         'nodeSocket' => [
             'class' => '\YiiNodeSocket\NodeSocket',
-            'host' => 'test.local',
+            'host' => 'realtimechat',
             'allowedServerAddresses' => [
-                "test.local",
+                "realtimechat",
                 "127.0.0.1"
             ],
             'origin' => '*:*',
