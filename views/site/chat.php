@@ -10,34 +10,44 @@ $this->title = 'Chat';
 <script>
     var socket = new YiiNodeSocket();
     socket.debug(true);
+    var testRoom;
 
     socket.onConnect(function () {
-        alert('onConnect');
-    });
+        var room = socket.room('chatRoom').join(function (success, numberOfRoomSubscribers) {
+            if (success && numberOfRoomSubscribers <= 2) {
+                alert(numberOfRoomSubscribers + ' clients in room: ');
+                // do something
 
-    socket.onDisconnect(function () {
-        alert('onDisconnect');
-    });
+                // bind events
+                this.on('join', function (newMembersCount) {
+                    alert(numberOfRoomSubscribers + ' clients in joinjoinjoinjoin: ');
+                });
 
-    socket.onConnecting(function () {
-        console.log('onConnecting');
+                this.on('data', function (data) {
+                    alert(numberOfRoomSubscribers + ' clients in datadatadatadata: ');
+                });
 
-    });
+                this.on('test', function (data) {
+                    alert(numberOfRoomSubscribers + ' clients in TEST TEST: ');
+                });
 
-    socket.onReconnect(function () {
-        alert('onReconnect');
-    });
+            } else {
+                // numberOfRoomSubscribers - error message
+                alert(numberOfRoomSubscribers);
+            }
+        });
 
+        $("#send").on("click", function () {
+            room.emit('test' , {
+                message : {
+                    id : 12,
+                    title : 'This is a test message'
+                }
+            });
+        });
 
-    socket.emit('global.event', {
-        message : {
-            id : 12,
-            title : 'This is a test message'
-        }
-    });
-
-    socket.on('global.event', function (data) {
-       alert(data.message.title); // you will see in console `This is a test message`
     });
 </script>
+
+<i id="send">SEND MESSSAGE</i>
 
