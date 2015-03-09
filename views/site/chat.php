@@ -5,8 +5,8 @@ use yii\helpers\Html;
 $this->title = 'Chat';
 ?>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/web/js/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
-<script src="/web/js/js/client/client.js"></script>
+<script src="/js/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="/js/js/client/client.js"></script>
 <script>
     var socket = new YiiNodeSocket();
     socket.debug(true);
