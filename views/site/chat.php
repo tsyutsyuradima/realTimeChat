@@ -14,7 +14,6 @@ $this->title = 'Chat';
 
     var room = socket.room('chatRoom').join(function (success, numberOfRoomSubscribers) {
 
-        alert(this.);
         if (success && numberOfRoomSubscribers <= 2) {
             if (numberOfRoomSubscribers == 1) {
                 $('#wait').css({ 'display': "block" });
