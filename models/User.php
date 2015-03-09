@@ -6,6 +6,20 @@ use yii\db\ActiveRecord;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
+//    public function behaviors() {
+//        return array(
+//            // attach channel behavior
+//            'channel' => array(
+//                'class' => '\YiiNodeSocket\Behaviors\ArChannel',
+//                'updateOnSave' => true
+//            ),
+//            // attach subscriber behavior
+//            'subscriber' => array(
+//                'class' => '\YiiNodeSocket\Behaviors\ArSubscriber'
+//            )
+//        );
+//    }
+
     /**
      * @inheritdoc
      */

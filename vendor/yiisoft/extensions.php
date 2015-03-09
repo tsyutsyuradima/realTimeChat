@@ -3,6 +3,15 @@
 $vendorDir = dirname(__DIR__);
 
 return array (
+    'yii-node-socket' =>
+    array (
+        'name' => 'yii-node-socket',
+        'version' => '2.0.3.2',
+        'alias' =>
+        array (
+            '@yii/nodeSocket' => $vendorDir . '/yii-node-socket/lib/php',
+        ),
+    ),
   'yiisoft/yii2-swiftmailer' => 
   array (
     'name' => 'yiisoft/yii2-swiftmailer',

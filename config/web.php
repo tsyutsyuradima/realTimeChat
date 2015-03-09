@@ -5,11 +5,24 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','nodeSocket'],
+
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'wMmdSDOGtNp7DkqyVxeP8ooYzZvBL36J',
+        ],
+        'nodeSocket' => [
+            'class' => 'yii\nodeSocket\NodeSocket',
+            'host' => 'realtimechat',
+            'allowedServerAddresses' => [
+                "realtimechat",
+                "127.0.0.1"
+            ],
+            'origin' => '*:*',
+            'sessionVarName' => 'PHPSESSID',
+            'port' => 3001,
+            'socketLogFile' => '/var/log/node-socket.log',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
