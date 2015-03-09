@@ -1,13 +1,17 @@
 html,
 body {
     height: 100%;
+    /*background: url('/web/img/bg2.jpg') no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
 }
 
 .wrap {
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
-    padding: 0 0 60px;
 }
 
 .wrap > .container {
@@ -88,4 +92,124 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+
+/* --------------------- chat -------------------- */
+
+ul.chatList {
+    overflow: auto;
+    bottom: 200px;
+    vertical-align: top;
+    width: 900px;
+    height: 450px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+ul.chatList li {
+    list-style-type: none;
+    width: 600px;
+    margin-bottom: 10px;
+}
+
+ul.chatList li.system {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+ul.chatList li span.name {
+    padding: 10px;
+}
+
+ul.chatList li.you {
+    float: left;
+}
+
+ul.chatList li.you span.name {
+    text-align: right;
+    float: left;
+    display: block;
+    width: 100px;
+    color: #6F6F6F;
+}
+
+ul.chatList li.you span.msg {
+    float: right;
+    color: #6F6F6F;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 20px;
+    background: rgb(204, 229, 255);
+    border-radius: 5px 5px 5px 0;
+    display: block;
+    width: 500px;
+}
+
+ul.chatList li.me {
+    float: right;
+}
+
+ul.chatList li.me span.name {
+    text-align: left;
+    float: right;
+    display: block;
+    width: 100px;
+    color: #6F6F6F;
+}
+
+ul.chatList li.me span.msg {
+    color: #6F6F6F;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 20px;
+    background: rgb(233, 243, 255);
+    border-radius: 5px 5px 0 5px;
+    display: block;
+    width: 500px;
+}
+
+#message {
+    vertical-align: top;
+    width: 700px;
+    height: 60px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 0 10px rgb(150, 201, 237);
+}
+
+#message textarea {
+    color: #6A747F;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 14px;
+    width: 600px;
+    height: 60px;
+    resize: none;
+    border-left: 2px solid rgb(73, 153, 245);
+    border-top: 2px solid rgb(73, 153, 245);
+    border-bottom: 2px solid rgb(73, 153, 245);
+}
+#message button {
+    color: white;
+    text-shadow: 1px 0 3px rgb(0, 18, 139);
+    border: 2px solid rgb(73, 153, 245);
+    background: rgb(120, 174, 236);
+    font-size: 20px;
+    float: right;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: 60px;
+    font-weight: bold;
+}
+
+.site-login {
+    text-align: center;
+    width:700px;
+    margin-right: auto;
+    margin-left: auto;
 }
