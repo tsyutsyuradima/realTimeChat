@@ -5,35 +5,35 @@ use yii\helpers\Html;
 $this->title = 'Chat';
 ?>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/js/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
-<script src="/js/js/client/client.js"></script>
+<script src="/web/js/js/server/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="/web/js/js/client/client.js"></script>
 <script>
     var socket = new YiiNodeSocket();
     socket.debug(true);
     var testRoom;
 
-    var room = socket.room('chatRoom').join(function (success, numberOfRoomSubscribers) {
-
-        if (success && numberOfRoomSubscribers <= 2) {
-            if (numberOfRoomSubscribers == 1) {
-                $('#wait').css({ 'display': "block" });
-            }
-            else {
-                $('#chat').css({ 'display': "block" });
-                this.emit('toJoin' , {
-                    message : {
-                        id : <?=Yii::$app->getUser()->identity->id?>,
-                        username : '<?=Yii::$app->getUser()->identity->username?>'
-                    }
-                });
-            }
-        } else {
-            this.leave();
-            $('#excessive').css({ 'display': "block" });
-        }
-    });
-
     socket.onConnect(function () {
+
+        var room = socket.room('chatRoom').join(function (success, numberOfRoomSubscribers) {
+            if (success && numberOfRoomSubscribers <= 2) {
+                if (numberOfRoomSubscribers == 1) {
+                    $('#wait').css({ 'display': "block" });
+                }
+                else {
+                    $('#chat').css({ 'display': "block" });
+                    this.emit('toJoin' , {
+                        message : {
+                            id : <?=Yii::$app->getUser()->identity->id?>,
+                            username : '<?=Yii::$app->getUser()->identity->username?>'
+                        }
+                    });
+                }
+            } else {
+                this.leave();
+                $('#excessive').css({ 'display': "block" });
+            }
+        });
+
         room.on('sendMessage', function (data) {
             if (data.message.msg === '') return false;
             var who = '';
@@ -85,10 +85,12 @@ $this->title = 'Chat';
     });
 </script>
 <div id="excessive" style="display: none;">
-    Oops...
+    <h3>Oops, you can not join this chat!</h3>
+    <h4>There are already two people in it</h4>
 </div>
 <div id="wait" style="display: none;">
-    Wait...
+    <h3>There are no other people in this chat!</h3>
+    <h4>Wait...</h4>
 </div>
 <div id="chat" style="display: none;">
     <ul class="chatList"></ul>

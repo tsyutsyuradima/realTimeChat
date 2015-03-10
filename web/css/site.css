@@ -213,3 +213,9 @@ ul.chatList li.me span.msg {
     margin-right: auto;
     margin-left: auto;
 }
+
+#wait, #excessive {
+    text-align: center;
+    font-size:20px;
+    color:#666;
+}
