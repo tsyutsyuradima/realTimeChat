@@ -12,7 +12,13 @@ $this->title = 'Chat';
     socket.debug(true);
     var testRoom;
 
+    socket.on('room_leave', function(){
+        alert('ss');
+    });
+
     socket.onConnect(function () {
+
+        console.log(socket.roomClients);
 
         var room = socket.room('chatRoom').join(function (success, numberOfRoomSubscribers) {
             if (success && numberOfRoomSubscribers <= 2) {
@@ -29,7 +35,6 @@ $this->title = 'Chat';
                     });
                 }
             } else {
-                this.leave();
                 $('#excessive').css({ 'display': "block" });
             }
         });
@@ -58,6 +63,15 @@ $this->title = 'Chat';
                 $('#wait').css({ 'display': "none" });
                 $('#chat').css({ 'display': "block" });
                 $('.chatList').append('<li class="system">' + data.message.username + ' have successfully joined!</li>');
+            }
+        });
+
+        room.on('toLeave', function (data) {
+            console.log(data.countClients);
+            if (data.countClients == 2) {
+                $('#wait').css({ 'display': "block" });
+                $('#chat').css({ 'display': "none" });
+                $('.chatList').html('');
             }
         });
 
